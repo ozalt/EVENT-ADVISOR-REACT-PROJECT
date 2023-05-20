@@ -1,0 +1,20 @@
+/* Font faimly */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Lora:wght@400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+:root {
+  --font-family-main: 'Roboto';
+  --font-family-sub: 'Lora';
+  --font-family-reg: 'Lato';
+  --yellow-btn: linear-gradient(180deg, #FFB400 0%, #FFB400 0.01%, #EAAD1A 100%);
+  --gradient-bar: linear-gradient(103.22deg, #AE67FA -13.86%, #F49867 99.55%);
+  
+  --color-bg: #040C18;
+  --color-white: #f6f6f6;
+  --color-red: #F04445;
+  --color-yellow: #ffb400;
+  --color-blue: #0a142f;
+
+  /* --color-footer : #031B34;
+  --color-blog: #042c54;
+  --color-text: #81AFDD;
+  --color-subtext: #FF8A71; */
+}

@@ -1,8 +1,8 @@
 import React from 'react';
 import './feature.css';
 import { VendorCard } from '../../components';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const Feature = () => {
     return (
@@ -12,25 +12,46 @@ const Feature = () => {
                 <p>Top places where you can visit</p>
             </div>
             <div className="feature-card">
-                <AliceCarousel
-                    mouseTracking
-                    items={[
-                        <VendorCard key={1} />,
-                        <VendorCard key={2} />,
-                        <VendorCard key={3} />,
-                        <VendorCard key={4} />,
-                        <VendorCard key={5} />,
-                    ]}
-                    responsive={{
-                        0: { items: 1 },
-                        768: { items: 3 },
+                <Carousel
+                    showThumbs={false}
+                    showArrows={false}
+                    showStatus={false}
+                    showIndicators={true}
+                    infiniteLoop={true}
+                    centerMode={true}
+                    centerSlidePercentage={23}
+                    emulateTouch={true}
+                    swipeable={true}
+                    renderIndicator={(clickHandler, isSelected, index, label) => {
+                        if (isSelected) {
+                            return (
+                                <li
+                                    className="dot active"
+                                    aria-label={`Slide ${label} active`}
+                                    title={`Slide ${label}`}
+                                    onClick={clickHandler}
+                                    key={index}
+                                />
+                            );
+                        }
+                        return (
+                            <li
+                                className="dot"
+                                aria-label={`Slide ${label}`}
+                                title={`Slide ${label}`}
+                                onClick={clickHandler}
+                                key={index}
+                            />
+                        );
                     }}
-                    buttonsDisabled={true} // Hide the navigation arrows
-                    dotsDisabled={false} // Display the navigation dots
-                    renderDotsItem={(currentItem, i) => (
-                        <span className={`dot ${currentItem === i ? 'active' : ''}`} />
-                    )}
-                />
+                >
+                    <VendorCard />
+                    <VendorCard />
+                    <VendorCard />
+                    <VendorCard />
+                    <VendorCard />
+                    <VendorCard />
+                </Carousel>
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css'
+import './App.css';
 // import { NavBar } from './components';
-import { Hero, Feature, Hiw, Blog, Footer } from './containers';
+import { Hero, Location, Feature, Hiw, Blog, Footer } from './containers';
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <div className="app">
           {/* <NavBar /> */}
           <Hero />
-
+        <Location/>
         <Feature />
         <Hiw />
         <Blog />

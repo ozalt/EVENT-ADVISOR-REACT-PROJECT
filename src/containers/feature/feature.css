@@ -1,0 +1,49 @@
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background: var(--red-bg);
+    padding: 50px 100px;
+    overflow: hidden;
+
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    gap: 75px;
+    padding: 50px;
+    overflow: hidden;
+
+}
+
+.feature-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 2px;
+}
+
+.feature-heading h1 {
+    font-family: var(--font-family-sub);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 41px;
+    text-align: center;
+    color: var(--color-white);
+}
+
+.feature-heading p {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--color-white);
+}

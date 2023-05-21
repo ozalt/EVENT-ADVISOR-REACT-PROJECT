@@ -3,8 +3,8 @@ import './footer.css';
 
 const Footer = () => {
     return (
-        <div className='footer-style'>
-     NICE
+        <div>
+            Footer
         </div>
     )
 }

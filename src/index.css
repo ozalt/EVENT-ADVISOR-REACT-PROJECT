@@ -5,13 +5,15 @@
   --font-family-sub: 'Lora';
   --font-family-reg: 'Lato';
   --yellow-btn: linear-gradient(180deg, #FFB400 0%, #FFB400 0.01%, #EAAD1A 100%);
-  --gradient-bar: linear-gradient(103.22deg, #AE67FA -13.86%, #F49867 99.55%);
+  --blue-bg: linear-gradient(216.19deg, #2D4059 5.76%, #0A142F 67.34%);
+  --red-bg: linear-gradient(180deg, #C94243 0%, #F14445 100%);
   
   --color-bg: #040C18;
   --color-white: #f6f6f6;
   --color-red: #F04445;
   --color-yellow: #ffb400;
   --color-blue: #0a142f;
+  --color-grey: #909090;
 
   /* --color-footer : #031B34;
   --color-blog: #042c54;

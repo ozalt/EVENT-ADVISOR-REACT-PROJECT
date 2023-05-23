@@ -6,6 +6,7 @@
   --font-family-reg: 'Lato';
   
   --yellow-btn: linear-gradient(180deg, #FFB400 0%, #FFB400 0.01%, #EAAD1A 100%);
+  --red-btn: linear-gradient(180deg, #EA5455 0%, #D55556 76.04%);
 
   --blue-bg: linear-gradient(216.19deg, #2D4059 5.76%, #0A142F 67.34%);
   --red-bg: linear-gradient(180deg, #C94243 0%, #F14445 100%);

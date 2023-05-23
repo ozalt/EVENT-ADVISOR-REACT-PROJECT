@@ -163,7 +163,7 @@
 }
 
 .footer-contact-btn .weding {
-    background: #EA5455;
+    background: var(--red-btn)
 }
 
 .footer-contact-btn .vendor {

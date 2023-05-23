@@ -23,7 +23,7 @@ const Hero = () => {
     ];
     return (
         <div className="hero">
-            <NavBar />
+            <NavBar color='#f6f6f6'/>
             <div className="header section__padding" id="home">
                 <div className="header-content">
                     <h1>Your Wedding Your Way</h1>

@@ -1,17 +1,37 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import './navbar.css';
-import logo from '../../assets/logo.png';
+// import logo from '../../assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
-const NavBar = () => {
+const NavBar = ({color}) => {
     const [toggleMenu, setToggleMenu] = useState(false);
+    const NavColor = {
+        color: color,
+    };
+
+    // const navigate = useNavigate();
+
+    // const onHomeClick = useCallback(() => {
+    //     navigate("/");
+    // }, [navigate]);
+
+    // const onVendorClick = useCallback(() => {
+    //     navigate("/vendors");
+    // }, [navigate]);
+
+    // const onBlogClick = useCallback(() => {
+    //     navigate("/vendors");
+    // }, [navigate]);
+
     return (
-        <div className='navbar'>
+        <div className='navbar' style={NavColor}>
             <div className="navbar-logo">
-                <img src={logo} alt='Well Eve' />
+                <Link to='/'><h1>WellEve</h1></Link>
+                {/* <img src={logo} alt='Well Eve' /> */}
                 <div className="navbar-search">
                     <form action="" method="post">
                         <input
@@ -25,11 +45,11 @@ const NavBar = () => {
             </div>
             <div className="navbar-links">
                 <div className="navbar-links_container">
-                    <p><a href="#home">Home</a></p>
-                    <p><a href="#wgpt3">Category</a></p>
-                    <p><a href="#possibility">Vendors</a></p>
-                    <p><a href="#features">How it Works?</a></p>
-                    <p><a href="#blog">Blogs</a></p>
+                    <p><Link to="/">Home</Link></p>
+                    <p><Link to="/">Category</Link></p>
+                    <p><Link to="/vendors">Vendors</Link></p>
+                    <p><Link to="/">How it Work?</Link></p>
+                    <p><Link to="/blog">Blog</Link></p>
                 </div>
             </div>
             <div className="navbar-sign">
@@ -43,11 +63,11 @@ const NavBar = () => {
                 {toggleMenu && (
                     <div className="navbar-menu_container scale-up-center">
                         <div className="navbar-menu_container-links">
-                            <p><a href="#home">Home</a></p>
-                            <p><a href="#wgpt3">Category</a></p>
-                            <p><a href="#possibility">Vendors</a></p>
-                            <p><a href="#features">How it Works?</a></p>
-                            <p><a href="#blog">Blogs</a></p>
+                            <p><Link to="/">Home</Link></p>
+                            <p><Link to="/">Category</Link></p>
+                            <p><Link to="/vendors">Vendors</Link></p>
+                            <p><Link to="/">How it Work?</Link></p>
+                            <p><Link to="/blog">Blog</Link></p>
                         </div>
                         <div className="navbar-menu_container-links-sign">
                             <button type="button">Sign up</button>

@@ -1,22 +1,21 @@
 import React from 'react';
 import './App.css';
-// import { NavBar } from './components';
-import { Hero, Location, Feature, Hiw, Blog, Footer } from './containers';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home, Blog, VendorsPages } from './pages';
 
 const App = () => {
   return (
-    <div>
-      <div className="app">
-          {/* <NavBar /> */}
-          <Hero />
-        <Location/>
-        <Feature />
-        <Hiw />
-        <Blog />
-        <Footer />
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+        {/* <Route path="/sign-up" element={<SignUp />} /> */}
+        {/* <Route path="/hotel-detail" element={<HotelDetail />} /> */}
+        <Route path="/vendors" element={<VendorsPages />} />
+        <Route path="/blog" element={<Blog />} />
+      </Routes>
+      </BrowserRouter>
+      );
 }
 
-export default App
+      export default App;

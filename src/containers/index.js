@@ -5,3 +5,7 @@ export {default as Footer} from './footer/Footer';
 export {default as Hero} from './hero/Hero';
 export {default as Location} from './location/Location';
 export {default as NewsLetter} from './newsletter/NewsLetter';
+export {default as AreaAvailable} from './area-available/AreaAvailable';
+export {default as DetailProject} from './vendor-detail-project/DetailProject';
+export {default as PackageArea} from './vendor-detail-packages/PackageArea';
+export {default as ReviewArea} from './review-area/ReviewArea';

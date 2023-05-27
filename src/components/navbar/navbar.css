@@ -108,6 +108,19 @@
     cursor: pointer;
 }
 
+.category-dropdown {
+    background-color: transparent;
+    font-family: var(--font-family-reg);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16.8px;
+    text-transform: capitalize;
+    /* margin: 0 1rem; */
+    cursor: pointer;
+}
+.category-dropdown option{
+    background-color: var(--color-grey);
+}
 .navbar-menu_container {
     display: flex;
     justify-content: flex-end;
@@ -141,6 +154,7 @@
 
     .navbar-menu {
         display: flex;
+        color: var(--color-white);
     }
 }
 

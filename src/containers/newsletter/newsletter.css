@@ -6,11 +6,11 @@
     align-items: center;
     padding: 50px 0px;
     gap: 150px;
-}
-
-.newsletter img {
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 100%;
 }
+
 
 .newsletter-heading {
     display: flex;

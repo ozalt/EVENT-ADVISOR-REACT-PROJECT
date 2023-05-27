@@ -1,0 +1,219 @@
+.vendor-list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 15px 10px;
+    gap: 20px;
+    width: 1240px;
+    height: 230px;
+    background: white;
+    border-radius: 10px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    box-shadow: 0px 4px 10px -2px rgba(0, 0, 0, 0.25);
+}
+
+.list-img {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    display: flex;
+}
+
+.list-img img {
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.list-img i {
+    position: absolute;
+    left: 261px;
+    top: 10px;
+}
+
+.list-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 10px;
+    gap: 50px;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    width: 900px;
+    height: 38px;
+}
+
+.list-body-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 100px;
+
+    /* width: 900px;
+    height: 72px; */
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.body-heading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.body-heading-content h1 {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--color-blue);
+}
+
+.body-heading-content h1 span {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--color-grey);
+}
+
+.heading-address {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+    font-family: var(--font-family-reg);
+    font-style: normal !important;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: var(--color-grey);
+}
+
+.heading-address p {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 5px;
+}
+
+.heading-address i {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    color: var(--color-yellow);
+    cursor: pointer;
+}
+
+.body-heading-rating {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 2px;
+    margin-right: 20px;
+    font-family: var(--font-family-reg);
+    color: var(--color-white);
+
+    width: 70px;
+    height: 39px;
+
+    /* red btn */
+
+    background: linear-gradient(180deg, #EA5455 0%, #D55556 76.04%);
+    border-radius: 4px;
+}
+
+.body-heading-rating h4 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.body-heading-rating p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 10px;
+}
+
+.list-body-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+    width: 900px;
+    height: 38px;
+}
+
+.list-body-content p {
+    width: 552px;
+    height: 38px;
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: var(--color-grey);
+
+}
+
+.list-body-content-button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+    float: right;
+
+    width: 122px;
+    height: 37px;
+    margin-right: 20px;
+
+    /* yellow btn */
+
+    background: var(--yellow-btn);
+    border-radius: 5px;
+}
+
+.list-body-content-button p {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--color-white);
+    cursor: pointer;
+}

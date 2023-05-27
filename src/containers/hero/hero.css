@@ -65,7 +65,7 @@
     font-family: var(--font-family-reg);
 }
 
-.search-input {
+.search-input-bar {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -103,6 +103,7 @@
     border-radius: 5px;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
 .divider {

@@ -32,7 +32,7 @@ const Hero = () => {
                 </div>
                 {/* search area */}
                 <div className="search-bar">
-                    <div className="search-input">
+                    <div className="search-input-bar">
                         <FontAwesomeIcon icon={faCalendar} />
                         <div className="column">
                             <label htmlFor="date">Date:</label>

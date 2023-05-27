@@ -1,0 +1,17 @@
+.bread-crumb {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 100px;
+}
+
+.bread-crumb p {
+    font-family: var(--font-family-sub);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+}
+.bread-crumb p span{
+    color: var(--color-grey);
+}

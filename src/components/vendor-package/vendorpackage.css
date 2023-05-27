@@ -1,0 +1,95 @@
+.vendor-package {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 39px;
+    width: 330px;
+    height: 500px;
+    background: linear-gradient(216.19deg, #2D4059 5.76%, #0A142F 67.34%);
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.vendor-package img {
+    width: 330px;
+    height: 250px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.package-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 20px 20px;
+    gap: 30px;
+}
+
+.package-content h1 {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: capitalize;
+    color: var(--color-white);
+}
+
+.package-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 11px;
+}
+
+.package-offer p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 14px;
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    color: var(--color-white);
+}
+
+.package-price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 70px;
+    font-family: var(--font-family-reg);
+    color: var(--color-yellow);
+}
+
+.package-price p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.package-price button {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px 26px;
+    width: 120px;
+    height: 40px;
+    background: var(--red-btn);
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -1,0 +1,129 @@
+.signup {
+    display: flex;
+    height: 100vh;
+}
+
+.right-section img {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+}
+
+.left-section {
+    flex: 1;
+    position: relative;
+    color: var(--color-white);
+    background: var(--red-bg);
+    padding: 20px;
+
+}
+
+.left-section h1 {
+    font-family: var(--font-family-main);
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 36px;
+}
+
+.right-section {
+    flex: 1;
+    background: var(--color-white);
+    color: black;
+    padding: 20px;
+}
+
+/* 
+.mod-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+}
+
+.mod-form form .form-group {
+    font-family: var(--font-family-reg);
+    color: var(--color-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+}
+
+.mod-form form .form-group label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.mod-form form .form-group input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 230px 12px 20px;
+    gap: 10px;
+    background: var(--color-white);
+    border: 1px dashed #0A142F;
+    border-radius: 10px;
+}
+
+.mod-form form .form-group input::placeholder {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--color-grey);
+} */
+/* 
+.mod-form form button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 15px 200px;
+    background: var(--yellow-btn);
+    box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 421px;
+    height: 54px;
+    cursor: pointer;
+}
+
+.mod-field p {
+    font-family: var(--font-family-reg);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--color-grey);
+}
+
+.mod-field h5 {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    width: 100%;
+    color: var(--color-grey);
+}
+.mod-field h5 span {
+    color: var(--color-yellow);
+    text-decoration: underline;
+    cursor: pointer;
+} */

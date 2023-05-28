@@ -65,7 +65,9 @@ const NavBar = ({ color }) => {
                 </div>
             </div>
             <div className="navbar-sign">
-                <button type="button">Sign up</button>
+                <Link to="/login">
+                    <button type="button">Sign up</button>
+                </Link>
             </div>
 
             <div className="navbar-menu">
@@ -112,7 +114,9 @@ const NavBar = ({ color }) => {
                             </p>
                         </div>
                         <div className="navbar-menu_container-links-sign">
-                            <button type="button">Sign up</button>
+                            <Link to="/login">
+                                <button type="button">Sign up</button>
+                            </Link>
                         </div>
                     </div>
                 )}

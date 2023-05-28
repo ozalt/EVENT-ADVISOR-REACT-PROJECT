@@ -9,3 +9,4 @@ export {default as AreaAvailable} from './area-available/AreaAvailable';
 export {default as DetailProject} from './vendor-detail-project/DetailProject';
 export {default as PackageArea} from './vendor-detail-packages/PackageArea';
 export {default as ReviewArea} from './review-area/ReviewArea';
+export {default as AccountForm} from './account-form/AccountForm';

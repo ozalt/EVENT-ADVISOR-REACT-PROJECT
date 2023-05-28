@@ -9,3 +9,4 @@ export { default as VendorList } from './vendor-card-list/VendorList';
 export { default as Area } from './area-available/Area';
 export { default as VendorPackage } from './vendor-package/VendorPackage';
 export { default as SingleReview } from './single-review/SingleReview';
+export { default as InputField } from './input-field/InputField';

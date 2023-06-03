@@ -1,0 +1,231 @@
+.single-blog-context {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 50px;
+}
+
+.single-blog-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 50px 10px 50px;
+    gap: 30px;
+    background: #FFFFFF;
+    color: var(--color-blue);
+    font-family: var(--font-family-reg);
+}
+
+.single-blog-body h1 {
+    font-family: var(--font-family-sub);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+}
+
+.single-blog-body img {
+    width: 800px;
+    height: 400px;
+}
+
+.single-blog-body-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 0px 0px 30px;
+    gap: 30px;
+    width: 830px;
+}
+
+.single-blog-body-detail h2 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.single-blog-body-detail h3 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--color-grey);
+}
+
+.single-blog-body-detail p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: justify;
+}
+
+.single-blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+    gap: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px -2px rgba(0, 0, 0, 0.25);
+}
+
+.single-blog-sidebar h1 {
+    font-family: var(--font-family-sub);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.sidebar-popular-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 15px;
+}
+
+.sidebar-post {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+}
+
+.sidebar-post img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.post-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    font-family: var(--font-family-reg);
+    color: var(--color-grey);
+}
+
+.post-heading h4 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.post-heading p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+}
+
+.sidebar-line {
+    width: 173px;
+    height: 0px;
+    border: 1px solid #909090;
+}
+
+.single-blog-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 100px;
+    gap: 20px;
+}
+
+.single-blog-comment h2 {
+    font-family: var(--font-family-reg);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--color-blue);
+}
+
+.comment-reply {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+}
+
+.comment-reply img,
+.single-comment img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.comment-reply form input {
+    width: 500px;
+    border-bottom: 1px solid #909090;
+    background-color: transparent;
+    padding: 5px;
+}
+
+.comment-reply form button {
+    margin-left: 20px;
+}
+
+.comment-line {
+    width: 1240px;
+    border: 1px solid #909090;
+}
+
+.single-blog-comments {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 50px;
+    gap: 20px;
+}
+
+.single-comment {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+}
+
+.single-comment-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 5px;
+    font-family: var(--font-family-reg);
+    color: var(--color-blue);
+}
+
+.single-comment-detail h3 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 14px;
+}
+
+.single-comment-detail h4 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 10px;
+    color: var(--color-red);
+}
+
+.single-comment-detail p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 12px;
+    color: var(--color-grey);
+}

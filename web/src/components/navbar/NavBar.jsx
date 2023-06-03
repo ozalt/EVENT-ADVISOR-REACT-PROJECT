@@ -60,7 +60,7 @@ const NavBar = ({ color }) => {
                         <Link to="/">How it Work?</Link>
                     </p>
                     <p>
-                        <Link to="/blog">Blog</Link>
+                        <Link to="/blogpage">Blog</Link>
                     </p>
                 </div>
             </div>

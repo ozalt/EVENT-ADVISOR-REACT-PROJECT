@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import './accountform.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { InputField } from '../../components';
 
-const AccountForm = ({ formTitle, btnText, footerText, spanText, btnLink, spanLink, mod }) => {
-    const [username, setUsername] = useState('');
+const AccountForm = ({ formTitle, btnText, footerText, spanText, spanLink, mod }) => {
+    const [user, setUser] = useState('');
     const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
 
     const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+        setUser(event.target.value);
     };
 
     const handleEmailChange = (event) => {
@@ -18,36 +21,43 @@ const AccountForm = ({ formTitle, btnText, footerText, spanText, btnLink, spanLi
     };
 
     const handlePhoneNumberChange = (event) => {
-        setPhoneNumber(event.target.value);
+        setPhone(event.target.value);
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
 
-    async function fieldValue(event) {
-        event.preventDefault()
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        const userData = { user, email, phone, password };
 
-        const response = await fetch('http://localhost:1337/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username,
-                email,
-                password,
-                phoneNumber
-            }),
-        })
+        try {
+            const response = await fetch('/api/signup', {
+                method: 'POST',
+                body: JSON.stringify(userData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-        const data = await response.json()
-        console.log(data)
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error);
+            }
 
-        // if (data.status === 'ok') {
-        //     history.push('/login')
-        // }
-    }
+            setUser('');
+            setPassword('');
+            setEmail('');
+            setPhone('');
+            setError('');
+            navigate('/login');
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+
 
     return (
         <div>
@@ -57,32 +67,46 @@ const AccountForm = ({ formTitle, btnText, footerText, spanText, btnLink, spanLi
                     <h3>{formTitle}</h3>
                 </div>
                 <div className="mod-form">
-                    <form onSubmit={fieldValue}>
-                        {mod === 'login' && (
-                            <>
-                                <InputField labelText="username or email" placeHolderText="example: john wick" value={username} onChange={handleUsernameChange} />
-                                <InputField labelText="Password" placeHolderText="********" value={password} onChange={handlePasswordChange} />
-                            </>
-                        )}
-                        {mod === 'signup' && (
-                            <>
-                                <InputField labelText="username" placeHolderText="example: john wick" value={username} onChange={handleUsernameChange} />
-                                <InputField labelText="Email" placeHolderText="someone@gmail.com" value={email} onChange={handleEmailChange} />
-                                <InputField labelText="Phone Number" placeHolderText="03**-*******" value={phoneNumber} onChange={handlePhoneNumberChange} />
-                                <InputField labelText="Password" placeHolderText="********" value={password} onChange={handlePasswordChange} />
-                            </>
-                        )}
-                        {/* <Link to={btnLink}> */}
-                        <button type="submit">{btnText}</button>
-                        {/* </Link> */}
-                    </form>
+                    {mod === 'login' && (
+                        <>
+                            <form>
+
+                                {/* username */}
+                                <InputField labelText="username" placeHolderText="example: john wick" inputType={"text"} value={user} onChange={handleUsernameChange} />
+                                {/* password */}
+                                <InputField labelText="Password" inputType={"password"} placeHolderText="********" value={password} onChange={handlePasswordChange} />
+                                <button type="submit">{btnText}</button>
+                                {error && <div className='error'>{error}</div>}
+                            </form>
+                        </>
+                    )}
+                    {mod === 'signup' && (
+                        <>
+                            <form onSubmit={handleSignup}>
+
+                                {/* username */}
+                                <InputField labelText="username" placeHolderText="example: john wick" value={user} inputType={"text"} onChange={handleUsernameChange} />
+                                {/* email */}
+                                <InputField labelText="Email" placeHolderText="someone@gmail.com" inputType={"email"} value={email} onChange={handleEmailChange} />
+                                {/* phone number */}
+                                <InputField labelText="Phone Number" placeHolderText="03**-*******" inputType={"number"} value={phone} onChange={handlePhoneNumberChange} />
+                                {/* password */}
+                                <InputField labelText="Password" placeHolderText="********" value={password} inputType={"password"} onChange={handlePasswordChange} />
+                                <button type="submit">{btnText}</button>
+                                {error && <div className='error'>{error}</div>}
+                            </form>
+                        </>
+                    )}
+                    {/* <Link to={btnLink}> */}
+                    {/* </Link> */}
                 </div>
                 <p>Or</p>
                 <h5>
                     {footerText} <Link to={spanLink}><span>{spanText}</span></Link>
                 </h5>
             </div>
-        </div>
+
+        </div >
     );
 };
 

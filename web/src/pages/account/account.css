@@ -38,7 +38,7 @@
     padding: 20px;
 }
 
-/* 
+
 .mod-form form {
     display: flex;
     flex-direction: column;
@@ -81,8 +81,8 @@
     font-size: 12px;
     line-height: 14px;
     color: var(--color-grey);
-} */
-/* 
+} 
+
 .mod-form form button {
     display: flex;
     flex-direction: row;
@@ -126,4 +126,4 @@
     color: var(--color-yellow);
     text-decoration: underline;
     cursor: pointer;
-} */
+} 

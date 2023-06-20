@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, BlogPage, VendorsPages, VendorDetail, SignUp, Login, SingleBlog } from './pages';
-
+import AdminDashboard from './Dashboard/AdminDash';
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/blogpage" element={<BlogPage />} />
         <Route path="/single-blog" element={<SingleBlog />} />
+        <Route path="/dashboard" element={<AdminDashboard />} />
       </Routes>
       </BrowserRouter>
       );

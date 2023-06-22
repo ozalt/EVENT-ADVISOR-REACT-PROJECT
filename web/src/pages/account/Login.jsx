@@ -14,9 +14,6 @@ const Login = () => {
                 </Link>
                 <img src={bgImg1} alt="" />
             </div>
-<<<<<<< Updated upstream
-            <AccountForm formTitle='Login Up' btnText='Sign In' footerText='No Account?' spanText=' Sign Up' btnLink='/' spanLink='/signup' mod='login'/>
-=======
             <div className="mod-field">
                 <div className="mod-heading">
                     <p>Welcome to Well Eve</p>
@@ -60,7 +57,6 @@ const Login = () => {
                     No Account. <Link to="/signup"><span>Sign Up</span></Link>
                 </h5>
             </div>
->>>>>>> Stashed changes
             <div className="right-section">
                 <img src={bgImg2} alt="" />
             </div>

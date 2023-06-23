@@ -91,7 +91,7 @@ const NavBar = ({ color }) => {
                         <div className="user-dropdown">
                             <p>{user.user}</p>
                             <ul>
-                                <li><Link to="/profile">Profile</Link></li>
+                                <li><Link to="/Dashboard">Profile</Link></li>
                                 <li><Link to="/settings">Settings</Link></li>
                                 <div className="line"></div>
                                 <li onClick={handleClickLogout}>Logout</li>

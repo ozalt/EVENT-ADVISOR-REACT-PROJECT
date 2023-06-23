@@ -71,7 +71,7 @@ const Login = () => {
                 </div>
                 <p>Or</p>
                 <h5>
-                    No Account. <Link to="/login"><span>Sign Up</span></Link>
+                    No Account. <Link to="/signup"><span>Sign Up</span></Link>
                 </h5>
             </div>
             <div className="right-section">

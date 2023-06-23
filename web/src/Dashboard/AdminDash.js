@@ -7,11 +7,12 @@ import { IoInformationCircleSharp, IoRestaurant } from 'react-icons/io5';
 import { GiFamilyHouse } from 'react-icons/gi';
 import InformationMenuBlock from './InformationMenuBlock';
 import {NavBar} from '../components'
+import { Footer } from '../containers';
 
 const AdminDashboard = () => {
-  const [selectedMenu, setSelectedMenu] = useState('information');
+  const [selectedMenu, setMenu] = useState('information');
   const handleMenuClick = (menu) => {
-    setSelectedMenu(menu);
+    setMenu(menu);
   };
 
   const [selectedImages, setSelectedImages] = useState([]);
@@ -39,7 +40,8 @@ const AdminDashboard = () => {
   };
 
   return (
-    <> <NavBar/>
+    <> 
+    <NavBar/>
     <div className="admin-dashboard">
       <nav className="nav-menu">
         <h3>HI, Ozal</h3>
@@ -66,17 +68,20 @@ const AdminDashboard = () => {
           </li>
         </ul>
       </nav>
-      <div className="menu-block">
-        {selectedMenu === 'information' && 
+        {selectedMenu === 'information' && ( 
+
+          <div className="menu-block">
             <InformationMenuBlock />
-      }</div>
+      </div>
+        )
+        }
         {selectedMenu === 'projects' && (
           <div className="menu-block-other">
             <div className="heading-style">
               <h2>Projects</h2>
-              <label className="file-upload-label">
+              <label>
                 <input type="file" accept="image/*" multiple onChange={handleImageChange} />
-                <span className="choose-file-button">Add Images</span>
+                <span  className="file-upload-label" >Add Images</span>
               </label>
             </div>
             {selectedImages.map((image, index) => (
@@ -121,6 +126,7 @@ const AdminDashboard = () => {
         )}
       
     </div>
+    <Footer/>
     </>
   );
 };

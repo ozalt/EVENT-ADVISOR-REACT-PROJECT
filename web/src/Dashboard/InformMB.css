@@ -94,7 +94,9 @@
   .personal-info-form {
     margin-top: 2rem;
   }
-  
+  .personal-info-form button {
+    margin: 0 0 2rem 2rem;
+  }
   .form-row {
     display: flex;
     flex-direction: row;
@@ -134,8 +136,7 @@
   background-image: linear-gradient(216.19deg, #2D4059 5.76%, #0A142F 67.34%);
   border: 1px solid #0A142F;
   padding-left: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 1rem;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;

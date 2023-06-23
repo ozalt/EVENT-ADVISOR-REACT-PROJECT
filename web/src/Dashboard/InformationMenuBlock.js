@@ -115,7 +115,7 @@ const InformationMenuBlock = () => {
           <label htmlFor="address">Address</label>
           <textarea id="address"></textarea>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="file-upload-label">Submit</button>
       </form>
     </div>
   );

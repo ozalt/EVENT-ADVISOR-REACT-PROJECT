@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './account.css';
 import { Link } from "react-router-dom";
 import bgImg1 from '../../assets/Saly-2.png';
 import bgImg2 from '../../assets/Saly-3.png';
-import { AccountForm } from '../../containers';
+import {useLogin} from './UseLogin'
 
 const Login = () => {
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
+    const {login, error, isloading} = useLogin()
+
+    const handleUsernameChange = (event) => {
+        setUser(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        await login(user, password)
+    };
+
     return (
         <div className="signup">
             <div className="left-section">
@@ -54,13 +71,13 @@ const Login = () => {
                 </div>
                 <p>Or</p>
                 <h5>
-                    No Account. <Link to="/signup"><span>Sign Up</span></Link>
+                    No Account. <Link to="/login"><span>Sign Up</span></Link>
                 </h5>
             </div>
             <div className="right-section">
                 <img src={bgImg2} alt="" />
             </div>
-        </div>
+        </div >
     )
 }
 

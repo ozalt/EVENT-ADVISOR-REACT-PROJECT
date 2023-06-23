@@ -19,6 +19,7 @@ const BlogPage = () => {
         <div>
             <NavBar />
             <BreadCrumb />
+
             {/* main context */}
             <div className="blog-context">
                 <div className="blog-page-body">
@@ -90,6 +91,7 @@ const BlogPage = () => {
                 </div>
             </div>
             {/* end main context */}
+            
             <NewsLetter />
             <Footer />
         </div>

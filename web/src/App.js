@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, BlogPage, VendorsPages, VendorDetail, SignUp, Login, SingleBlog } from './pages';
-import AdminDashboard from './Dashboard/AdminDash';
+import { Home, BlogPage, VendorsPages, VendorDetail, SignUp, Login, SingleBlog } 
+from './pages';
+import AdminDashboard from './Dashboard/AdminDash'
 const App = () => {
   return (
     <BrowserRouter>

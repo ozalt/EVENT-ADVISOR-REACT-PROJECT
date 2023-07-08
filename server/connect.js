@@ -8,7 +8,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/well-eve",{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 }).then( () =>{
-    console.log("Connectednfjhbbsj...");
+    console.log("Connected...");
 }).catch( (err) =>{
     console.log(err)
 })

@@ -1,8 +1,8 @@
-const express = require('express');
+ const express = require('express');
 require('./connect')
 const app = express();
 const port = 5000;
-const adminRoutes = require('./routes/AppRoutes')
+const appRoutes = require('./routes/AppRoutes')
 
 
 
@@ -17,7 +17,7 @@ app.use((req, res, next)=>{
     next()
 })
 
-app.use("/api",adminRoutes)
+app.use("/api",appRoutes)
 
 // Start the server
 app.listen(port, () => {

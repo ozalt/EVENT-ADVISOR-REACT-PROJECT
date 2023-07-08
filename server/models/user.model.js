@@ -6,7 +6,19 @@ const User = new mongoose.Schema({
 	email: { type: String, required: true, unique: true },
 	password: { type: String, required: true },
 	phone: { type: String, required: true },
-});
+	brandName: { type: String },
+	contactPerson: { type: String },
+	additionalEmail: { type: String },
+	contactNumber: { type: String },
+	websiteLink: { type: String },
+	facebookUrl: { type: String },
+	instagramUrl: { type: String },
+	youtubeUrl: { type: String },
+	additionalInfo: { type: String },
+	city: { type: String },
+	address: { type: String },
+  });
+  
 
 
 User.statics.signup = async function (user, password, email, phone) {
@@ -35,5 +47,21 @@ User.statics.login = async function (user, password) {
 	}
 	return login_user;
 };
+User.statics.updateUserInfo = async function (userId, userInfo) {
+	try {
+	  const user = await this.findByIdAndUpdate(userId, userInfo, { new: true });
+	  return user;
+	} catch (error) {
+	  throw Error("Failed to update user information.");
+	}
+  };
+User.statics.fetchUserData = async function () {
+	try {
+	  const users = await this.find();
+	  return users;
+	} catch (error) {
+	  throw Error("Failed to fetch user data.");
+	}
+  };
 
 module.exports = mongoose.model("UserData", User);

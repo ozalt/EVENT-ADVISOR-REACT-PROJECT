@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../models/user.model.js");
 const jwt = require("jsonwebtoken");
 
 const createToken = (_id) => {
@@ -38,7 +38,29 @@ const signupUser = async (req, res) => {
     }
 };
 
-module.exports = {
+const updateUserInfo = async (req, res) => {
+    const { userId } = req.params;
+    const userInfo = req.body;
+  
+    try {
+      const updatedUser = await User.updateUserInfo(userId, userInfo);
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+  const fetchUserData = async (req, res) => {
+    try {
+      // Assuming you have a method in your User model to fetch user data
+      const users = await User.find();
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  module.exports = {
     signupUser,
-    loginUser
-};
+    loginUser,
+    updateUserInfo,
+    fetchUserData
+  };

@@ -1,16 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const {
-    signupUser,
-    loginUser,
-    updateUserInfo,
-    fetchUserData
-} = require('../controllers/AppController')
+// const express = require("express");
+// const router = express.Router();
 
-// User routes
-router.post("/login", loginUser);
-router.post("/signup", signupUser);
-router.put("/user/:userId", updateUserInfo);
-router.get("/use/:userId",fetchUserData);
+// const {
+//     signupUser,
+//     loginUser,
+// } = require('../controllers/AppController')
 
-module.exports = router;
+// router.post("/login", loginUser);
+// router.post("/signup", signupUser);
+
+// module.exports = router;

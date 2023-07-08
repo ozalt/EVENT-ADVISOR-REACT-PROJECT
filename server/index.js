@@ -1,26 +1,25 @@
- const express = require('express');
-require('./connect')
+/* This code is setting up a basic Express server in JavaScript. */
+const express = require("express");
+require("./connect");
 const app = express();
 const port = 5000;
-const appRoutes = require('./routes/AppRoutes')
-
-
+// const UserRoutes = require('./routes/AppRoutes')
+const VendorRoutes = require("./routes/VendorRoutes");
+const cors = require("cors");
 
 // middle ware
 
-app.use(express.json())
+app.use(express.json());
 
-app.use((req, res, next)=>{
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    next()
-})
+app.use(cors());
 
-app.use("/api",appRoutes)
+// for user
+// app.use("/api/user",UserRoutes)
+
+// for Vendor
+app.use("/api/vendor", VendorRoutes);
 
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
-    
 });

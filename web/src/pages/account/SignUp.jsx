@@ -34,7 +34,7 @@ const SignUp = () => {
         const userData = { user, email, phone, password };
 
         try {
-            const response = await fetch('http://localhost:5000/api/signup', {
+            const response = await fetch('http://localhost:5000/api/vendor/signup', {
                 method: 'POST',
                 body: JSON.stringify(userData),
                 headers: {

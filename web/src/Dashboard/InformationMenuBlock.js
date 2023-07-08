@@ -1,26 +1,44 @@
+/**
+ * The above code is a React component that renders an information menu block with user data, a
+ * progress bar, and a form for editing and saving user information.
+ * @returns The code is returning a JSX element that represents the InformationMenuBlock component.
+ */
 import React, { useState, useEffect } from 'react';
 import './InformMB.css';
-
+import { useAuthContext } from "../hooks/useAuthContext";
 const InformationMenuBlock = () => {
+  const { user } = useAuthContext();
   const [progress, setProgress] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const [userData, setUserData] = useState({}); // State for storing user data
 
+/* The `useEffect` hook is used to perform side effects in functional components. In this case, the
+effect is fetching user data from an API endpoint when the `user` state changes. */
   useEffect(() => {
-    // Simulating fetching user data from the server
     const fetchUserData = async () => {
       try {
-        const response = await fetch('/api/user'); // Assuming you have an API endpoint to fetch user data
-        const data = await response.json();
-        setUserData(data);
+        if (user && user.user) {
+          // Add null check for user.user
+          const response = await fetch(
+            `http://localhost:5000/api/vendor/get-vendor/${user.user}`
+          );
+          if (response.ok) {
+            const data = await response.json();
+            const Data = data.users;
+            setUserData(Data);
+          } else {
+            console.log("Error:", response.status);
+          }
+        }
       } catch (error) {
-        console.log(error);
+        console.log("Fetch error:", error);
       }
     };
 
     fetchUserData();
-  }, []);
+  }, [user]); // Add user as a dependency
 
+/* The `useEffect` hook in the provided code is used to update the progress bar in the component. */
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -34,21 +52,33 @@ const InformationMenuBlock = () => {
     };
   }, []);
 
+/**
+ * The function toggleEditMode toggles the edit mode by updating the state variable prevEditMode.
+ */
   const toggleEditMode = () => {
     setEditMode((prevEditMode) => !prevEditMode);
   };
 
-  const updateUserInformation = async () => {
+/**
+ * The function `updateUserInformation` sends a POST request to update user information to a specified
+ * API endpoint.
+ */
+  const updateUserInformation = async (e) => {
     try {
-      const response = await fetch(`/api/user/${userData._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
+        e.preventDefault();
+      const response = await fetch(
+        `http://localhost:5000/api/vendor/update-info/${userData._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
 
       if (response.ok) {
+        setEditMode(false)
         // Handle successful update
       } else {
         // Handle update failure
@@ -58,23 +88,33 @@ const InformationMenuBlock = () => {
     }
   };
 
+/**
+ * The function `renderForm` renders a form with input fields for personal information, allowing the
+ * user to edit and save their data.
+ * @returns The function `renderForm` returns a JSX form element with various input fields and labels.
+ * It also includes conditional rendering based on the `editMode` and `userData` variables. If
+ * `userData` is falsy, it displays a loading message. If `editMode` is true, it displays a "Save"
+ * button, otherwise it displays an "Edit" button.
+ */
   const renderForm = () => {
-    if (userData === null) {
-      return <p>Loading...</p>; // Render a loading state or placeholder content
+    if (!userData) {
+      return <p>Loading...</p>;
     }
     return (
       <form className="personal-info-form">
         <h3>Personal Information</h3>
-        <div className="form-row">
+        {/* <div className="form-row">
           <label htmlFor="loginEmail">Login email ID</label>
           <input
             type="text"
             id="loginEmail"
             disabled={!editMode}
-            defaultValue={userData.email}
-            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+            value={userData.email}
+            onChange={(e) =>
+              setUserData({ ...userData, email: e.target.value })
+            }
           />
-        </div>
+        </div> */}
         <div className="form-row">
           <label htmlFor="brandName">Brand Name*</label>
           <input
@@ -82,8 +122,10 @@ const InformationMenuBlock = () => {
             id="brandName"
             required
             disabled={!editMode}
-            defaultValue={userData.brandName}
-            onChange={(e) => setUserData({ ...userData, brandName: e.target.value })}
+            value={userData.brandName}
+            onChange={(e) =>
+              setUserData({ ...userData, brandName: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -92,8 +134,10 @@ const InformationMenuBlock = () => {
             type="text"
             id="contactPerson"
             disabled={!editMode}
-            defaultValue={userData.contactPerson}
-            onChange={(e) => setUserData({ ...userData, contactPerson: e.target.value })}
+            value={userData.contactPerson}
+            onChange={(e) =>
+              setUserData({ ...userData, contactPerson: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -102,8 +146,10 @@ const InformationMenuBlock = () => {
             type="text"
             id="additionalEmail"
             disabled={!editMode}
-            defaultValue={userData.additionalEmail}
-            onChange={(e) => setUserData({ ...userData, additionalEmail: e.target.value })}
+            value={userData.additionalEmail}
+            onChange={(e) =>
+              setUserData({ ...userData, additionalEmail: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -113,8 +159,10 @@ const InformationMenuBlock = () => {
             id="contactNumber"
             required
             disabled={!editMode}
-            defaultValue={userData.contactNumber}
-            onChange={(e) => setUserData({ ...userData, contactNumber: e.target.value })}
+            value={userData.contactNumber}
+            onChange={(e) =>
+              setUserData({ ...userData, contactNumber: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -123,8 +171,10 @@ const InformationMenuBlock = () => {
             type="text"
             id="websiteLink"
             disabled={!editMode}
-            defaultValue={userData.websiteLink}
-            onChange={(e) => setUserData({ ...userData, websiteLink: e.target.value })}
+            value={userData.websiteLink}
+            onChange={(e) =>
+              setUserData({ ...userData, websiteLink: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -133,8 +183,10 @@ const InformationMenuBlock = () => {
             type="text"
             id="facebookUrl"
             disabled={!editMode}
-            defaultValue={userData.facebookUrl}
-            onChange={(e) => setUserData({ ...userData, facebookUrl: e.target.value })}
+            value={userData.facebookUrl}
+            onChange={(e) =>
+              setUserData({ ...userData, facebookUrl: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -143,8 +195,10 @@ const InformationMenuBlock = () => {
             type="text"
             id="instagramUrl"
             disabled={!editMode}
-            defaultValue={userData.instagramUrl}
-            onChange={(e) => setUserData({ ...userData, instagramUrl: e.target.value })}
+            value={userData.instagramUrl}
+            onChange={(e) =>
+              setUserData({ ...userData, instagramUrl: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -153,23 +207,28 @@ const InformationMenuBlock = () => {
             type="text"
             id="youtubeUrl"
             disabled={!editMode}
-            defaultValue={userData.youtubeUrl}
-            onChange={(e) => setUserData({ ...userData, youtubeUrl: e.target.value })}
+            value={userData.youtubeUrl}
+            onChange={(e) =>
+              setUserData({ ...userData, youtubeUrl: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
           <label htmlFor="additionalInfo">
             Additional Information <br></br>
             <small>
-              (To update your description, please send a mail to vendors@wedmegood.com)
+              (To update your description, please send a mail to
+              vendors@wedmegood.com)
             </small>
           </label>
           <input
             type="text"
             id="additionalInfo"
             disabled={!editMode}
-            defaultValue={userData.additionalInfo}
-            onChange={(e) => setUserData({ ...userData, additionalInfo: e.target.value })}
+            value={userData.additionalInfo}
+            onChange={(e) =>
+              setUserData({ ...userData, additionalInfo: e.target.value })
+            }
           />
         </div>
         <div className="form-row">
@@ -177,7 +236,7 @@ const InformationMenuBlock = () => {
           <select
             id="city"
             disabled={!editMode}
-            defaultValue={userData.city}
+            value={userData.city}
             onChange={(e) => setUserData({ ...userData, city: e.target.value })}
           >
             <option value="">Choose your base city here</option>
@@ -189,27 +248,37 @@ const InformationMenuBlock = () => {
           <textarea
             id="address"
             disabled={!editMode}
-            defaultValue={userData.address}
-            onChange={(e) => setUserData({ ...userData, address: e.target.value })}
+            value={userData.address}
+            onChange={(e) =>
+              setUserData({ ...userData, address: e.target.value })
+            }
           ></textarea>
         </div>
         {editMode ? (
-          <button type="submit" className="file-upload-label" onClick={updateUserInformation}>
+          <button
+            type="button"
+            className="file-upload-label"
+            onClick={updateUserInformation}
+          >
             Save
           </button>
         ) : (
-          <button type="button" className="file-upload-label" onClick={toggleEditMode}>
+          <button
+            type="button"
+            className="file-upload-label"
+            onClick={toggleEditMode}
+          >
             Edit
           </button>
         )}
       </form>
     );
   };
-  
 
+/* The code is returning a JSX element that represents the InformationMenuBlock component. */
   return (
     <div className="menu-block-information">
-        <div className="heading">
+      <div className="heading">
         <h2>Information</h2>
       </div>
       <div className="row-mb">

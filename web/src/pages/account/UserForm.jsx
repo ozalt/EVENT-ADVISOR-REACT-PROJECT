@@ -11,6 +11,7 @@ const UserForm = ({
   error
 }) => {
   return (
+    <>
     <form onSubmit={onSubmit}>
       {/* username */}
       <div className="form-group">
@@ -48,9 +49,10 @@ const UserForm = ({
         />
       </div>
 
-      <button type="submit">Create</button>
-      {error && <div className='error'>{error}</div>}
+      
     </form>
+    <button className='form-btn'  type="submit">Create</button>
+      {error && <div className='error'>{error}</div>}  </>
   );
 };
 

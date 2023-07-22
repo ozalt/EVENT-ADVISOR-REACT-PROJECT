@@ -50,7 +50,7 @@ const VendorForm = ({
           <input
             type="text" // Use type="text" for phone number
             id="phone"
-            placeholder="03**-*"
+            placeholder="03**-*******"
             value={phone}
             onChange={onPhoneNumberChange}
           />

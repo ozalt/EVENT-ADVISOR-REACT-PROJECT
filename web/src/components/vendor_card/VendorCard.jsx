@@ -2,7 +2,8 @@ import React from 'react';
 import './vendorcard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import wishlist from '../../assets/wishlist.png';
+import { RiHeart3Line } from 'react-icons/ri';
+
 import img from '../../assets/vendor-1.jpg';
 
 
@@ -19,7 +20,10 @@ const VendorCard = () => {
                     </div>
                 </div>
                 <button>
-                    <img src={wishlist} alt="" />
+                    <RiHeart3Line 
+                    width={40}
+                    className='heart-icon'
+                    />
                 </button>
             </div>
             <div className="vendor-footer">

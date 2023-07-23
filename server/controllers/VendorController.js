@@ -74,6 +74,7 @@ const signupUser = async (req, res) => {
  * @returns a JSON response with the updated user object if the user is found and updated successfully.
  * If no user is found, it returns a JSON response with an error message.
  */
+
 const updateProfile = async (req, res) => {
     const { id } = req.params;
 
@@ -101,6 +102,7 @@ const updateProfile = async (req, res) => {
  * @returns a JSON response with the user's record if it exists, or a JSON response with an error
  * message if no record is found.
  */
+
 const getVendorRecord = async (req, res) => {
     const { id } = req.params;
     const users = await Vendor.findOne({ user: id });

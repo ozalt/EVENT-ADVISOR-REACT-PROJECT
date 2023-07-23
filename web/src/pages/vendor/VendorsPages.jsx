@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './vendor.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
@@ -6,13 +6,14 @@ import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { NavBar, BreadCrumb, Filter, VendorList } from '../../components';
 import { NewsLetter, Footer } from '../../containers';
-import listImg from '../../assets/1.jpg';
+// import listImg from '../../assets/1.jpg';
 
 
 const Vendors = () => {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [capacity, setCapacity] = useState('');
+    const [venueData, setVenueData] = useState('');
 
     const handleSearch = () => {
         // Perform search logic here based on the selected date, time, and capacity
@@ -22,8 +23,28 @@ const Vendors = () => {
     const timeOptions = [
         'Lunch',
         'Dinner',
-
     ];
+
+/* The `useEffect` hook in React is used to perform side effects in functional components. In this
+case, the `useEffect` hook is used to fetch data from the specified API endpoint
+(`http://localhost:5000/api/vendor/venue`) and update the state (`venueData`) with the fetched data. */
+    useEffect(() => {
+        const fetchAllVenues = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/vendor/venue');
+                if (response.ok) {
+                    const data = await response.json();
+                    setVenueData(data);
+                } else {
+                    console.log("Error:", response.status);
+                }
+            } catch (error) {
+                console.log("Fetch error:", error);
+            }
+        };
+        fetchAllVenues();
+    }, []);
+
     return (
         <div className='vendor-page'>
             <NavBar color='#0A142F' />
@@ -81,10 +102,18 @@ const Vendors = () => {
             <Filter />
             {/* vendor listss */}
             <div className="vendor-page-lists">
-                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
-                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
-                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
-                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
+                {venueData && venueData.map((venue) => (
+                    <VendorList
+                        key={venue._id} 
+                        vendorImg={venue.venueImageUrl} 
+                        vendorName={venue.venueName}
+                        vendorLoc={venue.location}
+                        vendorRating={"4.1"}
+                        vendorReview={venue.review}
+                        vendorDetail={venue.description}
+                        vendorId={venue._id}
+                    />
+                ))}
             </div>
             {/* end vendor listss */}
             <NewsLetter />

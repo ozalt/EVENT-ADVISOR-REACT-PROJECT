@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import './detailproject.css';
 
-import projectImg1 from '../../assets/Barat-Stage-Decoration-ideas-9.jpg';
-import projectImg2 from '../../assets/b045b0400bdc5721d1148ece1d17046c.jpg';
-
-const DetailProject = () => {
+import { RiImage2Fill, RiVideoFill } from "react-icons/ri";
+const DetailProject = ({ projectImagesUrl, projectVideosUrl }) => {
     const [activeTab, setActiveTab] = useState('portfolio');
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
+
     return (
         <div className="vendor-project">
             <div className="vendor-sub-navbar">
@@ -18,66 +17,69 @@ const DetailProject = () => {
                         className={activeTab === 'portfolio' ? 'active' : ''}
                         onClick={() => handleTabClick('portfolio')}
                     >
-                        Portfolio (19)
+                        Portfolio ({projectImagesUrl ? projectImagesUrl.length : 0})
                     </li>
-                    <li
-                        className={activeTab === 'albums' ? 'active' : ''}
-                        onClick={() => handleTabClick('albums')}
-                    >
-                        ALBUMS (2)
-                    </li>
+
                     <li
                         className={activeTab === 'videos' ? 'active' : ''}
                         onClick={() => handleTabClick('videos')}
                     >
-                        VIDEOS (0)
+                        VIDEOS ({projectVideosUrl ? projectVideosUrl.length : 0})
                     </li>
                 </ul>
             </div>
             <div className="line"></div>
             <div className="project-area">
-
                 {activeTab === 'portfolio' && (
                     <div className="project-item">
-                        <div className="img-row">
-                            <img src={projectImg1} alt="" />
-                            <img src={projectImg2} alt="" />
-                            <img src={projectImg1} alt="" />
-                            <img src={projectImg2} alt="" />
-                        </div>
-                        <div className="img-row">
-                            <img src={projectImg1} alt="" />
-                            <img src={projectImg2} alt="" />
-                            <img src={projectImg1} alt="" />
-                            <img src={projectImg2} alt="" />
-                        </div>
-                        <div className="img-row">
-                            <img src={projectImg1} alt="" />
-                            <img src={projectImg2} alt="" />
-                            <img src={projectImg1} alt="" />
-                            <img src={projectImg2} alt="" />
-                        </div>
+                        {projectImagesUrl && projectImagesUrl.length > 0 ? (
+                            <div className="img-row">
+                                {projectImagesUrl.map((imageUrl) => (
+                                    <img src={imageUrl} alt={imageUrl} key={imageUrl} />
+                                ))}
+                            </div>
+                        ) : (
+                            <>
+                                <div className="project-error">
+                                    <div className="project-error-msg">
+                                        <RiImage2Fill 
+                                        size={75}
+                                                color='#F04445'
+                                        />
+                                        <p>Image display Here...</p>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                     </div>
                 )}
 
-                {activeTab === 'albums' && (
-                    <div className="project-item">
-                        <div className="img-row">
-                            <img src={projectImg1} alt="" />
-
-                        </div>
-                    </div>
-                )}
                 {activeTab === 'videos' && (
                     <div className="project-item">
-                        <div className="img-row">
-                            <img src={projectImg2} alt="" />
-                        </div>
+                        {projectVideosUrl && projectVideosUrl.length > 0 ? (
+                            <div className="img-row">
+                                {projectVideosUrl.map((videoUrl) => (
+                                    <video src={videoUrl} key={videoUrl} controls></video>
+                                ))}
+                            </div>
+                        ) : (
+                            <>
+                                    <div className="project-error">
+                                        <div className="project-error-msg">
+                                            <RiVideoFill
+                                                size={75}
+                                                color='#0a142f'
+                                            />
+                                            <p>Video's display Here...</p>
+                                        </div>
+                                    </div>
+                            </>
+                        )}
                     </div>
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default DetailProject
+export default DetailProject;

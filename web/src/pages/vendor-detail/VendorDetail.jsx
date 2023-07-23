@@ -228,7 +228,7 @@ const VendorDetail = () => {
             <AreaAvailable hallDetail={venueHalls} />
             <DetailProject projectImagesUrl={vendorData.projectImagesUrl} projectVideosUrl={vendorData.projectVideosUrl} />
 
-            <PackageArea />
+            <PackageArea vendorId={vendorData.vendorId}/>
 
             <ReviewArea />
 

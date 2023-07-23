@@ -5,17 +5,19 @@ import { RiAddFill, RiCloseFill } from 'react-icons/ri';
 
 const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
     const [menuName, setMenuName] = useState('');
-    const [menuData, setMenuData] = useState([]);
     const [newDish, setNewDish] = useState({ dishName: '', price: '' });
+    const [formMenuData, setFormMenuData] = useState([]); // Separate state for the form
+    const [menuList, setMenuList] = useState([]); // Separate state for displaying menus
 
     const handleAddDish = () => {
-        setMenuData([...menuData, newDish]);
+        setFormMenuData([...formMenuData, newDish]);
         setNewDish({ dishName: '', price: '' });
     };
 
     const handleRemoveDish = (index) => {
-        const updatedMenuData = menuData.filter((_, i) => i !== index);
-        setMenuData(updatedMenuData);
+        const updatedMenuData = [...formMenuData];
+        updatedMenuData.splice(index, 1);
+        setFormMenuData(updatedMenuData);
     };
 
     useEffect(() => {
@@ -24,7 +26,7 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
                 const response = await fetch(`http://localhost:5000/api/vendor/menu/${vendorId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    setMenuData(data.menu);
+                    setMenuList(data.menu);
                 } else {
                     console.log("Error:", response.status);
                 }
@@ -40,7 +42,7 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
         const newMenu = {
             vendorId,
             menuName,
-            dishes: menuData,
+            dishes: formMenuData,
         };
 
         try {
@@ -54,10 +56,11 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
 
             if (response.ok) {
                 const data = await response.json();
-                setMenuData([...menuData, data]);
+                setMenuList([...menuList, data]);
                 closeModal();
                 setMenuName('');
                 setNewDish({ dishName: '', price: '' });
+                setFormMenuData([]); // Clear the form menu data after submission
             } else {
                 console.log('Error:', response.status);
             }
@@ -66,7 +69,7 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
         }
     };
 
-    if (!menuData || !menuData.length) {
+    if (!menuList || !menuList.length) {
         return <div>Loading...</div>; // Add a loading message or spinner when data is being fetched
     }
 
@@ -94,7 +97,7 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
                                     />
                                 </div>
                                 <div className="dishes-container">
-                                    {menuData.map((dish, index) => (
+                                    {formMenuData.map((dish, index) => (
                                         <div key={index} className="dish-item">
                                             <div className="row">
                                                 <div className="form-group">
@@ -105,9 +108,9 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
                                                         className="form-control"
                                                         value={dish.dishName}
                                                         onChange={(e) => {
-                                                            const updatedDishes = [...menuData];
+                                                            const updatedDishes = [...formMenuData];
                                                             updatedDishes[index].dishName = e.target.value;
-                                                            setMenuData(updatedDishes);
+                                                            setFormMenuData(updatedDishes);
                                                         }}
                                                     />
                                                 </div>
@@ -119,9 +122,9 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
                                                         className="form-control"
                                                         value={dish.price}
                                                         onChange={(e) => {
-                                                            const updatedDishes = [...menuData];
+                                                            const updatedDishes = [...formMenuData];
                                                             updatedDishes[index].price = e.target.value;
-                                                            setMenuData(updatedDishes);
+                                                            setFormMenuData(updatedDishes);
                                                         }}
                                                     />
                                                 </div>
@@ -132,7 +135,6 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
                                                 >
                                                     <RiCloseFill />
                                                 </button>
-
                                             </div>
                                         </div>
                                     ))}
@@ -160,15 +162,12 @@ const MenuModalForm = ({ isModalOpen, closeModal, vendorId }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {menuData.map((menu, index) => (
+                    {menuList.map((menu, index) => (
                         <tr key={index}>
                             <td>{menu.menuName}</td>
                             <td>
                                 <div className="dish-names">
-                                    <AiOutlineEye className="eye-icon"
-                                        size={34}
-                                        color='#f6f6f6'
-                                    />
+                                    <AiOutlineEye className="eye-icon" size={34} color='#f6f6f6' />
                                     <div className="dish-list">
                                         {menu.dishes.map((dish, dishIndex) => (
                                             <div key={dishIndex} className='dish-data'>

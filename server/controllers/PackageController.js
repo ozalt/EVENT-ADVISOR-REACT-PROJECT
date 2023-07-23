@@ -79,7 +79,7 @@ const createPackageRecord = (req, res) => {
 const getPackageForVendor = async (req, res) => {
     const { id } = req.params;
     try {
-        const package = await Package.find({ vendorId: id });
+        const package = await Package.find({vendorId: id });
         res.status(200).json({ package });
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch package for the given venueId" });

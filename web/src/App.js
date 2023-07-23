@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Home, BlogPage, VendorsPages, VendorDetail, SignUp, Login, SingleBlog } 
+import { Home, BlogPage, VendorsPages, VendorDetail, SignupHandler, Login, SingleBlog } 
 from './pages';
 import { useAuthContext } from "./hooks/useAuthContext";
 import AdminDashboard from './Dashboard/AdminDash'

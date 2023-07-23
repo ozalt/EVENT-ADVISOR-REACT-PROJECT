@@ -3,7 +3,7 @@ import './inputfield.css';
 
 const InputField = ({ labelText, placeHolderText, value, onChange, inputType }) => {
     return (
-        <div>
+        <div className='input-field'>
             <div className="form-group">
                 <label htmlFor="username">Enter your {labelText}</label>
                 <input

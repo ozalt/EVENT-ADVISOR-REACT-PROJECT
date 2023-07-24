@@ -122,7 +122,6 @@ const SignupHandler = () => {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        paddingTop: '1rem'
       }}
     >
       <div className="mod-field">

@@ -128,7 +128,7 @@ const SignupHandler = () => {
       <div className="mod-field">
         <div className="mod-heading">
           <p>Welcome to Well Eve</p>
-          <h3>Sign Up</h3>
+          <h3>Signup as {isVendor ? 'Vendor' : 'User'}</h3>
         </div>
         <div className="mod-form">
           {isVendor ? (

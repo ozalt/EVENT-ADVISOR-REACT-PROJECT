@@ -13,10 +13,8 @@
 }
 
 .modal-dialog {
-  max-width: 500px;
+  max-width: 400px;
   background-color: #fff;
-  max-height: 700px;
-  overflow-y: auto;
 }
 
 /* Modal container */
@@ -165,82 +163,4 @@ select.form-control {
 
 .menu-table tbody tr:hover {
   background-color: #ebebeb;
-}
-.truncate-text {
-  display: inline-block;
-  max-width: 150px;
-  /* Set the maximum width to show the ellipsis */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-  
-}
-
-/* Show full text on hover */
-td[data-full]:hover::after {
-  content: attr(data-full);
-  position: absolute;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 4px;
-  border-radius: 4px;
-  white-space: normal;
-  max-width: 250px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-  cursor: pointer;
-}
-.row{
-  display: flex;
-  gap: 10px;
-}
-.menu-add-btn{
-  background: var(--blue-bg);
-  color: var(--color-white);
-  padding: 15px;
-  border-radius: 10px;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 10px;
-}
-.dish-remove{
-  background: var(--red-btn);
-  height: fit-content;
-  padding: 10px;
-  color: var(--color-white);
-  margin-top: 23px;
-  border-radius: 10px;
-}
-
-.eye-icon {
-  cursor: pointer;
-  background: var(--blue-bg);
-  padding: 10px;
-  border-radius: 10px;
-}
-.dish-names {
-  position: relative;
-  display: inline-block;
-  gap: 20px;
-}
-
-.dish-list {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: #f1f1f1;
-  border: 1px solid #ddd;
-  padding: 5px;
-  border-radius: 10px;
-  display: none;
-  width: 150px;
-  gap: 10px;
-}
-.dish-data{
-  margin: 10px;
-}
-.dish-names:hover .dish-list {
-  display: block;
 }

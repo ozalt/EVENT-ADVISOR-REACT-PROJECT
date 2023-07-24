@@ -1,27 +1,31 @@
 import React from 'react';
 import './vendorpackage.css';
-import { RiUser3Line, RiHome5Line } from 'react-icons/ri';
-import { IoRestaurant } from 'react-icons/io5';
 
-const VendorPackage = ({ packageData }) => {
-    const { packageName, menuType, seatingCapacity, floationCapacity, hall, totalPrice, packageImageUrl } = packageData;
+
+import { RiMapPinLine } from 'react-icons/ri';
+import { RiUser3Line } from 'react-icons/ri';
+import { RiHome5Line } from 'react-icons/ri';
+
+import packageImg from '../../assets/vendor-1.jpg'
+
+const VendorProject = () => {
     return (
         <div className='vendor-package'>
-            <img src={packageImageUrl} alt="" />
+            <img src={packageImg} alt="" />
             <div className="package-content">
-                <h1>{packageName}</h1>
+                <h1>package Name</h1>
                 <div className="package-offer">
-                    <p><IoRestaurant /> {menuType}</p>
-                    <p><RiUser3Line /> {seatingCapacity} + {floationCapacity} x Guests</p>
-                    <p><RiHome5Line /> {hall} x Room</p>
+                    <p><RiMapPinLine/> 1749 Wheeler Ridge  Delaware</p>
+                    <p><RiUser3Line /> 500 x Guests</p>
+                    <p><RiHome5Line /> 1 x Room</p>
                 </div>
                 <div className="package-price">
-                    <p>{totalPrice} Pkr/-</p>
+                    <p>$ 8,500</p>
                     <button>Book Now</button>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default VendorPackage;
+export default VendorProject

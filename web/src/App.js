@@ -11,14 +11,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/vendors" element={<VendorsPages />} />
-        <Route path="/vendor-detail/:id" element={<VendorDetail />} />
+        <Route path="/vendor-detail" element={<VendorDetail />} />
         <Route path="/signup" element={<SignupHandler />} />
-        <Route
-          path="/login"
-          element={!user ? <Login /> : <Navigate to="/dashboard" />}
-        />
+        <Route path="/login" element={<Login />} />
         <Route path="/blogpage" element={<BlogPage />} />
         <Route path="/single-blog" element={<SingleBlog />} />
         {/* <Route path="/dashboard" element={<AdminDashboard />} /> */}
@@ -27,8 +25,8 @@ const App = () => {
           element={user ? <AdminDashboard /> : <Navigate to="/login" />}
         />
       </Routes>
-    </BrowserRouter>
-  );
+      </BrowserRouter>
+      );
 }
 
       export default App;

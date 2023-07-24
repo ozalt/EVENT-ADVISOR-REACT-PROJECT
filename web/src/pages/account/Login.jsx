@@ -1,80 +1,84 @@
-
 import React, { useState } from 'react';
 import './account.css';
-import { Link } from 'react-router-dom';
-import { useLogin } from './UseLogin';
-import UserLoginForm from './UserLoginForm';
-import VendorLoginForm from './VendorLoginForm';
-import backgroundImage from '../../assets/Login.jpg';
+import { Link } from "react-router-dom";
+import bgImg1 from '../../assets/Saly-2.png';
+import bgImg2 from '../../assets/Saly-3.png';
+import {useLogin} from './UseLogin'
+
 const Login = () => {
-  const [isVendorLogin, setIsVendorLogin] = useState(false);
-  const { login, error, isloading } = useLogin();
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
+    const {login, error, isloading} = useLogin()
 
-  const handleToggleLogin = () => {
-    setIsVendorLogin((prevState) => !prevState);
-  };
+    const handleUsernameChange = (event) => {
+        setUser(event.target.value);
+    };
 
-  return (
-    <div className="signup"
-    style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        paddingTop: '1rem'
-      }}>
-      
-      <div className="mod-field">
-        <div className="mod-heading">
-          <p>Welcome to Well Eve</p>
-          <h3>Login as {isVendorLogin ? 'Vendor' : 'User'}</h3>
-        </div>
-        <div className="mod-form">
-          {isVendorLogin ? (
-            <VendorLoginForm
-              onSubmit={(username, password) => login(username, password, true)}
-              isloading={isloading}
-              error={error}
-            />
-          ) : (
-            <UserLoginForm
-              onSubmit={(username, password) => login(username, password, false)}
-              isloading={isloading}
-              error={error}
-            />
-          )}
-        </div>
-        <div className="radio-wrapper">
-          <input
-            type="radio"
-            name="select"
-            id="option-1"
-            checked={!isVendorLogin}
-            onChange={handleToggleLogin}
-          />
-          <input
-            type="radio"
-            name="select"
-            id="option-2"
-            checked={isVendorLogin}
-            onChange={handleToggleLogin}
-          />
-          <label htmlFor="option-1" className="option option-1">
-            <div className="dot"></div>
-            <span>User</span>
-          </label>
-          <label htmlFor="option-2" className="option option-2">
-            <div className="dot"></div>
-            <span>Vendor</span>
-          </label>
-        </div>
-        <p>Or</p>
-        <h5>
-          No Account. <Link to="/signup"><span>Sign Up</span></Link>
-        </h5>
-      </div>
-    </div>
-  );
-};
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
 
-export default Login;
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        await login(user, password)
+    };
+
+    return (
+        <div className="signup">
+            <div className="left-section">
+                <Link to="/">
+                    <h1>Well Eve</h1>
+                </Link>
+                <img src={bgImg1} alt="" />
+            </div>
+            <div className="mod-field">
+                <div className="mod-heading">
+                    <p>Welcome to Well Eve</p>
+                    <h3>Log In</h3>
+                </div>
+                <div className="mod-form">
+                    <form onSubmit={handleLogin}>
+
+                        {/* username */}
+                        <div className="form-group">
+
+                            <label htmlFor="username">Enter your Username</label>
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="john wick"
+                                value={user}
+                                onChange={handleUsernameChange}
+                            />
+                        </div>
+
+                        {/* password */}
+                        <div className="form-group">
+
+                            <label htmlFor="password">Enter your Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="********"
+                                value={password}
+                                onChange={handlePasswordChange}
+                            />
+                        </div>
+
+                        <button type="submit" disabled={isloading}>Login</button>
+                        {error && <div className='error'>{error}</div>}
+                    </form >
+                </div>
+                <p>Or</p>
+                <h5>
+                    No Account. <Link to="/signup"><span>Sign Up</span></Link>
+                </h5>
+            </div>
+            <div className="right-section">
+                <img src={bgImg2} alt="" />
+            </div>
+        </div >
+    )
+}
+
+export default Login

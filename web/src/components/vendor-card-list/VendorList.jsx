@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import './vendorlist.css';
 
-const VendorList = ({vendorImg, vendorName, vendorLoc, vendorRating, vendorReview, vendorDetail, vendorId}) => {
+const VendorList = ({vendorImg, vendorName, vendorLoc, vendorRating, vendorReview, vendorDetail}) => {
     return (
         <div className='vendor-list'>
             <div className="list-img">
@@ -33,7 +33,7 @@ const VendorList = ({vendorImg, vendorName, vendorLoc, vendorRating, vendorRevie
                 </div>
                 <div className="list-body-content">
                     <p>{vendorDetail}</p>
-                    <Link to={`/vendor-detail/${vendorId}`}>
+                    <Link to="/vendor-detail">
                         <div className="list-body-content-button">
                             <p>Contact Now</p>
                         </div>

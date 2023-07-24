@@ -4,7 +4,7 @@ import './account.css';
 import { Link, useNavigate } from 'react-router-dom';
 import VendorForm from './VendorForm'; // Import the VendorForm component
 import UserForm from './UserForm'; // Import the UserForm component
-import backgroundImage from '../../assets/Loginsignup_back.jpg';
+import backgroundImage from '../../assets/signup.jpg';
 
 const SignupHandler = () => {
   const [user, setUser] = useState('');
@@ -128,7 +128,7 @@ const SignupHandler = () => {
       <div className="mod-field">
         <div className="mod-heading">
           <p>Welcome to Well Eve</p>
-          <h3>Sign Up</h3>
+          <h3>Signup as {isVendor ? 'Vendor' : 'User'}</h3>
         </div>
         <div className="mod-form">
           {isVendor ? (

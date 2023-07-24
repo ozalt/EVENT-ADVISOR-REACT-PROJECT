@@ -176,7 +176,7 @@ const AdminDashboard = () => {
                 Add New
               </button>
             </div>
-            <MenuModalForm isModalOpen={isModalOpen} closeModal={closeModal} vendorId={userData._id} />
+            <MenuModalForm isModalOpen={isModalOpen} closeModal={closeModal} />
           </div>
         )}
 

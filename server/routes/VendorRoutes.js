@@ -15,7 +15,7 @@ const {
   getSingleVenue,
   createVenueImage,
   createVenueVideo,
-  getAllVenueRecord
+  getAllVenueRecord,
 } = require("../controllers/VenueController");
 
 // for hall
@@ -24,18 +24,18 @@ const {
   getHallsForVenue,
 } = require("../controllers/HallController");
 
-// for package 
-const { 
+// for package
+const {
   createPackageRecord,
-  getPackageForVendor
+  getPackageForVendor,
 } = require("../controllers/PackageController");
 
 const {
   createMenuRecord,
-  getMenuForVendor
-} = require("../controllers/MenuController")
+  getMenuForVendor,
+} = require("../controllers/MenuController");
 
-
+const { SearchRecord } = require("../controllers/SearchController");
 
 // for create vendor
 
@@ -65,5 +65,8 @@ router.get("/package/:id", getPackageForVendor);
 router.post("/menu", createMenuRecord);
 router.get("/menu/:id", getMenuForVendor);
 
+// for search function
+
+router.get("/search", SearchRecord);
 
 module.exports = router;

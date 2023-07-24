@@ -1,33 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './vendor.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { NavBar, BreadCrumb, Filter, VendorList } from '../../components';
+import { NavBar, BreadCrumb, Filter, VendorList, SearchBar } from '../../components';
 import { NewsLetter, Footer } from '../../containers';
-// import listImg from '../../assets/1.jpg';
-
 
 const Vendors = () => {
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [capacity, setCapacity] = useState('');
-    const [venueData, setVenueData] = useState('');
+    const [venueData, setVenueData] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const handleSearch = () => {
-        // Perform search logic here based on the selected date, time, and capacity
-        console.log('Search:', date, time, capacity);
-    };
-
-    const timeOptions = [
-        'Lunch',
-        'Dinner',
-    ];
-
-/* The `useEffect` hook in React is used to perform side effects in functional components. In this
-case, the `useEffect` hook is used to fetch data from the specified API endpoint
-(`http://localhost:5000/api/vendor/venue`) and update the state (`venueData`) with the fetched data. */
     useEffect(() => {
         const fetchAllVenues = async () => {
             try {
@@ -36,90 +17,72 @@ case, the `useEffect` hook is used to fetch data from the specified API endpoint
                     const data = await response.json();
                     setVenueData(data);
                 } else {
-                    console.log("Error:", response.status);
+                    setError('Failed to fetch data from the server.');
                 }
             } catch (error) {
-                console.log("Fetch error:", error);
+                setError('Failed to fetch data from the server.');
+            } finally {
+                setLoading(false);
             }
         };
         fetchAllVenues();
     }, []);
 
+    
+    const handleSearchResults = async (results) => {
+        if (results && Array.isArray(results.venues)) {
+            setSearchResults(results.venues);
+        } else {
+            setSearchResults([]);
+        }
+    };
+
     return (
         <div className='vendor-page'>
             <NavBar color='#0A142F' />
-            {/* search bar */}
-            <div className="vendor-search">
-                <form action="" method="post">
-                    <div className="search-input">
-                        <FontAwesomeIcon icon={faCalendar} />
-                        <div className="column">
-                            <label htmlFor="date">Date:</label>
-                            <input
-                                id="date"
-                                type="date"
-                                placeholder="Select Date"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)}
-                            />
-                        </div>
-                        <div className="divider" />
-                        <FontAwesomeIcon icon={faClock} />
-                        <div className="column">
-                            <label htmlFor="time">Time:</label>
-                            <select
-                                id="time"
-                                value={time}
-                                onChange={(e) => setTime(e.target.value)}
-                            >
-                                <option value="">Time</option>
-                                {timeOptions.map((option) => (
-                                    <option key={option} value={option}>{option}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="divider" />
-                        <FontAwesomeIcon icon={faUsers} />
-                        <div className="column">
-                            <label htmlFor="capacity">Capacity</label>
-                            <input
-                                id="capacity"
-                                type="number"
-                                placeholder="Capacity"
-                                value={capacity}
-                                onChange={(e) => setCapacity(e.target.value)}
-                            />
-                        </div>
-                        <button className="search-button" type="submit" onClick={handleSearch}>
-                            Search
-                        </button>
-                    </div>
-                </form>
-            </div>
-            {/* end search bar */}
-
             <BreadCrumb />
+            <SearchBar onSearch={handleSearchResults} />
             <Filter />
             {/* vendor listss */}
             <div className="vendor-page-lists">
-                {venueData && venueData.map((venue) => (
-                    <VendorList
-                        key={venue._id} 
-                        vendorImg={venue.venueImageUrl} 
-                        vendorName={venue.venueName}
-                        vendorLoc={venue.location}
-                        vendorRating={"4.1"}
-                        vendorReview={venue.review}
-                        vendorDetail={venue.description}
-                        vendorId={venue._id}
-                    />
-                ))}
+                {loading ? (
+                    <p>Loading...</p>
+                ) : error ? (
+                    <p>Error: {error}</p>
+                ) : searchResults.length > 0 ? (
+                    searchResults.map((venue) => (
+                        <VendorList
+                            key={venue._id}
+                            vendorImg={venue.venueImageUrl}
+                            vendorName={venue.venueName}
+                            vendorLoc={venue.location}
+                            vendorRating={"4.1"}
+                            vendorReview={venue.review}
+                            vendorDetail={venue.description}
+                            vendorId={venue._id}
+                        />
+                    ))
+                ) : (
+                    venueData.map((venue) => (
+                        <VendorList
+                            key={venue._id}
+                            vendorImg={venue.venueImageUrl}
+                            vendorName={venue.venueName}
+                            vendorLoc={venue.location}
+                            vendorRating={"4.1"}
+                            vendorReview={venue.review}
+                            vendorDetail={venue.description}
+                            vendorId={venue._id}
+                        />
+                    ))
+                )}
             </div>
+
             {/* end vendor listss */}
             <NewsLetter />
             <Footer />
         </div>
-    )
-}
+    );
+};
 
-export default Vendors
+export default Vendors;

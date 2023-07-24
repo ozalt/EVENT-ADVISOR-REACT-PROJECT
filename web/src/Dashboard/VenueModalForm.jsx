@@ -17,6 +17,8 @@ const VenueModalForm = ({ isModalOpen, closeModal }) => {
     const [location, setLocation] = useState('');
     const [venueData, setVenueData] = useState([]);
     const [venueCapacity, setVenueCapacity] = useState('');
+    const [availability, setAvailability] = useState([]);
+
 
     const [venueId, setVenueId] = useState('');
     const [hallName, setHallName] = useState('');
@@ -240,6 +242,7 @@ const VenueModalForm = ({ isModalOpen, closeModal }) => {
         formData.append('location', location);
         formData.append('venueCapacity', venueCapacity);
         formData.append('venueImage', venueImage);
+        formData.append('availability', JSON.stringify(availability));
 
         try {
             const response = await fetch('http://localhost:5000/api/vendor/venue', {
@@ -255,6 +258,8 @@ const VenueModalForm = ({ isModalOpen, closeModal }) => {
                 setdescription('');
                 setLocation('');
                 setVenueImage(null);
+                setAvailability([]);
+                setCapacity('');
             } else {
                 console.log("Error:", response.status);
             }
@@ -341,7 +346,27 @@ const VenueModalForm = ({ isModalOpen, closeModal }) => {
         setIsHallModalOpen(false);
     };
 
+    const handleAddAvailability = () => {
+        const newAvailability = {
+            startDate: '', // Set the start date here (you can use a date picker to get the value)
+            endDate: '', // Set the end date here (you can use a date picker to get the value)
+            available: true, // Set the initial value to true for availability, and the vendor can change it later
+        };
 
+        setAvailability([...availability, newAvailability]);
+    };
+
+    const handleAvailabilityChange = (index, field, value) => {
+        const updatedAvailability = [...availability];
+        updatedAvailability[index][field] = value;
+        setAvailability(updatedAvailability);
+    };
+
+    const handleRemoveAvailability = (index) => {
+        const updatedAvailability = [...availability];
+        updatedAvailability.splice(index, 1);
+        setAvailability(updatedAvailability);
+    };
     return (
         <div>
             {isModalOpen && (
@@ -410,6 +435,35 @@ const VenueModalForm = ({ isModalOpen, closeModal }) => {
                                         onChange={(e) => setVenueCapacity(e.target.value)}
                                     />
                                 </div>
+                                <div className="form-group">
+                                    <label>Availability</label>
+                                    {availability.map((av, index) => (
+                                        <div key={index} className="availability-row">
+                                            <input
+                                                type="date"
+                                                value={av.startDate}
+                                                onChange={(e) => handleAvailabilityChange(index, 'startDate', e.target.value)}
+                                            />
+                                            <span>-</span>
+                                            <input
+                                                type="date"
+                                                value={av.endDate}
+                                                onChange={(e) => handleAvailabilityChange(index, 'endDate', e.target.value)}
+                                            />
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={av.available}
+                                                    onChange={(e) => handleAvailabilityChange(index, 'available', e.target.checked)}
+                                                />
+                                                Available
+                                            </label>
+                                            <button type="button" onClick={() => handleRemoveAvailability(index)}>Remove</button>
+                                        </div>
+                                    ))}
+                                    <button type="button" onClick={handleAddAvailability}>Add Availability</button>
+                                </div>
+
                             </div>
                             <div className="modal-footer">
                                 <button type="submit" className="btn btn-primary">

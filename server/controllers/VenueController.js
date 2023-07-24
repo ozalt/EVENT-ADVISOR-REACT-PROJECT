@@ -29,20 +29,22 @@ const createVenueRecord = async (req, res) => {
             return res.status(500).json({ error: "Failed to upload venue image" });
         }
 
-        const { vendorId, venueName, description, location, venueCapacity } = req.body;
+        const { vendorId, venueName, description, location, venueCapacity, availability } = req.body;
         const venueImage = req.file ? req.file.path : null; // Get the path of the uploaded image
 
         try {
             // Upload image to Cloudinary
             let venueImageUrl = null;
             if (venueImage) {
-                const cloudinaryUploadResult = await cloudinary.uploader.upload(venueImage,
-                    {
-                        folder: "venue",
-                        use_filename: true, // Use the original filename
-                    });
+                const cloudinaryUploadResult = await cloudinary.uploader.upload(venueImage, {
+                    folder: "venue",
+                    use_filename: true, // Use the original filename
+                });
                 venueImageUrl = cloudinaryUploadResult.secure_url;
             }
+
+            // Process the availability data before storing it in the database
+            const processedAvailability = JSON.parse(availability);
 
             // Create the venue record
             const venue = await Venue.create({
@@ -51,8 +53,9 @@ const createVenueRecord = async (req, res) => {
                 description,
                 location,
                 venueCapacity,
-                venueImage: venueImage, 
-                venueImageUrl: venueImageUrl, 
+                venueImage: venueImage,
+                venueImageUrl: venueImageUrl,
+                availability: processedAvailability,
             });
 
             res.status(200).json(venue); // Respond with the created venue record
@@ -61,6 +64,7 @@ const createVenueRecord = async (req, res) => {
         }
     });
 };
+
 const getAllVenueRecord = async (req, res) => {
     const venues = await Venue.find({});
     res.status(200).json(venues);

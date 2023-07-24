@@ -1,36 +1,56 @@
 const mongoose = require("mongoose");
 
-const venueSchema = {
+const availabilitySchema = new mongoose.Schema({
+    startDate: {
+        type: Date,
+    },
+    endDate: {
+        type: Date,
+    },
+    available: {
+        type: Boolean,
+        default: true, // Set default value to true (available), but the vendor can change it to false (unavailable)
+    },
+});
+
+const venueSchema = new mongoose.Schema({
     vendorId: {
-        type: String, // Assuming vendorId is of type number
-        required: true, // Specify if this field is required or not
+        type: String,
+        required: true,
     },
     venueName: {
-        type: String, // Venue name will be a string
+        type: String,
         required: true,
     },
     description: {
-        type: String, // Description will be a string
-        required: false, // You can set it to true if description is always required
+        type: String,
+        required: false,
     },
     location: {
-        type: String, // Location will be a string
+        type: String,
         required: true,
     },
     venueCapacity: {
-        type: Number, 
+        type: Number,
         required: true,
     },
-    venueImage: { type: String },
-
-	venueImageUrl: { type: String },
-    
-    projectImagesUrl: [{
-        type: String, // Array of strings to store multiple image file names or URLs
-    }],
-    projectVideosUrl: [{
-        type: String, // Array of strings to store multiple image file names or URLs
-    }],
-};
+    venueImage: {
+        type: String,
+    },
+    venueImageUrl: {
+        type: String,
+    },
+    projectImagesUrl: [
+        {
+            type: String,
+        },
+    ],
+    projectVideosUrl: [
+        {
+            type: String,
+        },
+    ],
+    availability: [availabilitySchema], // Array of availability objects
+});
 
 module.exports = mongoose.model("Venue", venueSchema);

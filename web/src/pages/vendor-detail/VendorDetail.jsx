@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './vendordetail.css';
+import { useParams } from 'react-router-dom';
+
 // icon...
-import { RiUser3Line } from 'react-icons/ri';
-import { RiStarFill } from 'react-icons/ri';
-import { RiHeartLine } from 'react-icons/ri';
-import { RiHome5Line } from 'react-icons/ri';
-import { RiQuillPenFill } from 'react-icons/ri';
+import { RiUser3Line, RiStarFill, RiHeartLine, RiHome5Line, RiQuillPenFill } from 'react-icons/ri';
 
-// image
-import vendorImg from '../../assets/2.jpg';
-
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavBar, BreadCrumb } from '../../components';
 import { NewsLetter, Footer, AreaAvailable, DetailProject, PackageArea, ReviewArea } from '../../containers';
 
 const VendorDetail = () => {
     const [date, setDate] = useState('');
-
+    const [vendorData, setVendorData] = useState({});
+    const [venueHalls, setVenueHalls] = useState({});
+    const { id } = useParams();
     const [selectedValueType, setSelectedValueType] = useState('');
+
 
     const handleRadioChangeType = (e) => {
         setSelectedValueType(e.target.value);
@@ -28,6 +25,44 @@ const VendorDetail = () => {
     const handleRadioChangeTime = (e) => {
         setSelectedValueTime(e.target.value);
     };
+
+    // fetch single venue detaills
+    useEffect(() => {
+        const fetchVendorData = async () => {
+            try {
+                const response = await fetch(`http://localhost:5000/api/vendor/venue-detail/${id}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setVendorData(data.venue); // Update the state with the fetched vendor data
+                } else {
+                    console.log("Error:", response.status);
+                }
+            } catch (error) {
+                console.log("Fetch error:", error);
+            }
+        };
+        fetchVendorData();
+    }, [id, vendorData]);
+
+    // fetch all hall detaill's
+    useEffect(()=>{
+    const fetchVenueHalls = async () => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/vendor/venue-hall/${id}`);
+            if (response.ok) {
+                const data = await response.json();
+                setVenueHalls(data.hall && data.hall.length > 0 ? data.hall : []);
+                // console.log(venueHalls)
+            } else {
+                console.log("Error:", response.status);
+            }
+        } catch (error) {
+            console.log("Fetch error:", error);
+        }
+    };
+    fetchVenueHalls();
+    },[id, venueHalls])
+
 
     return (
         <div>
@@ -43,8 +78,8 @@ const VendorDetail = () => {
                         <RiStarFill size={14} color='#F2994A' />
                         <RiStarFill size={14} color='#F2994A' />
                     </div>
-                    <h1>Grand Oyo Hotel</h1>
-                    <p>Half-Board/ All Inclusive + Complimentary Activities + Child Stays Free</p>
+                    <h1>{vendorData.venueName}</h1>
+                    <p>{vendorData.location}</p>
                 </div>
                 <div className="vendor-title-btn">
                     <div className="vendor-title-rating">
@@ -62,7 +97,7 @@ const VendorDetail = () => {
 
             {/* vendor img detail */}
             <div className="single-vendor-detail">
-                <img src={vendorImg} alt="" />
+                <img src={vendorData.venueImageUrl} alt="" />
                 <div className="vendor-detail-sidebar">
                     <div className="sidebar-booking">
                         <h3>Price starts at</h3>
@@ -83,11 +118,11 @@ const VendorDetail = () => {
                             <div className="detail-hall">
                                 <div className="hall-content">
                                     <RiUser3Line />
-                                    <p>1200 Guests</p>
+                                    <p>{vendorData.venueCapacity} Guests</p>
                                 </div>
                                 <div className="hall-content">
                                     <RiHome5Line />
-                                    <p>5 Hall</p>
+                                    <p>{venueHalls ? venueHalls.length : 0}  Hall</p>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +135,7 @@ const VendorDetail = () => {
                     <div className="sidebar-contact">
                         <h2>Get in Touch</h2>
                         <div className="line"></div>
-                        <p>Hi, Grand Hilton Hotel FSD</p>
+                        <p>Hi, {vendorData.venueName}</p>
                         <form action="" method="post">
                             <div className="contact-row">
                                 <input type="text" placeholder='Full Name *' />
@@ -190,11 +225,10 @@ const VendorDetail = () => {
                 </ul>
             </div>
 
-            <AreaAvailable />
+            <AreaAvailable hallDetail={venueHalls} />
+            <DetailProject projectImagesUrl={vendorData.projectImagesUrl} projectVideosUrl={vendorData.projectVideosUrl} />
 
-            <DetailProject />
-
-            <PackageArea />
+            <PackageArea vendorId={vendorData.vendorId}/>
 
             <ReviewArea />
 

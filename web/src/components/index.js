@@ -10,3 +10,4 @@ export { default as Area } from './area-available/Area';
 export { default as VendorPackage } from './vendor-package/VendorPackage';
 export { default as SingleReview } from './single-review/SingleReview';
 export { default as InputField } from './input-field/InputField';
+export { default as SearchBar } from './SearchBar';

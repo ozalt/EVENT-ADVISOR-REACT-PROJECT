@@ -15,6 +15,7 @@
     width: 330px;
     height: 250px;
     border-radius: 10px 10px 0px 0px;
+    object-fit: fill;
 }
 
 .package-content {
@@ -63,7 +64,7 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 0px;
-    gap: 70px;
+    gap: 50px;
     font-family: var(--font-family-reg);
     color: var(--color-yellow);
 }
@@ -86,8 +87,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 0px 26px;
-    width: 120px;
+    padding: 0px 15px;
+    width: fit-content;
     height: 40px;
     background: var(--red-btn);
     border-radius: 4px;

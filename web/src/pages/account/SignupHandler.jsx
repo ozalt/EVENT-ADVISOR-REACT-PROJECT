@@ -4,7 +4,7 @@ import './account.css';
 import { Link, useNavigate } from 'react-router-dom';
 import VendorForm from './VendorForm'; // Import the VendorForm component
 import UserForm from './UserForm'; // Import the UserForm component
-import backgroundImage from '../../assets/Loginsignup_back.jpg';
+import backgroundImage from '../../assets/signup.jpg';
 
 const SignupHandler = () => {
   const [user, setUser] = useState('');

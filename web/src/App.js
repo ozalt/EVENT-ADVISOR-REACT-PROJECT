@@ -1,19 +1,29 @@
 import React from 'react';
-import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, BlogPage, VendorsPages, VendorDetail, SignUp, Login, SingleBlog } from './pages';
 
+import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Home, BlogPage, VendorsPages, VendorDetail, SignupHandler, Login, SingleBlog } 
+from './pages';
+import { useAuthContext } from "./hooks/useAuthContext";
+import AdminDashboard from './Dashboard/AdminDash'
 const App = () => {
+  const { user } = useAuthContext();
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route path="/vendors" element={<VendorsPages />} />
         <Route path="/vendor-detail" element={<VendorDetail />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignupHandler />} />
         <Route path="/login" element={<Login />} />
         <Route path="/blogpage" element={<BlogPage />} />
         <Route path="/single-blog" element={<SingleBlog />} />
+        {/* <Route path="/dashboard" element={<AdminDashboard />} /> */}
+        <Route
+          path="/dashboard"
+          element={user ? <AdminDashboard /> : <Navigate to="/login" />}
+        />
       </Routes>
       </BrowserRouter>
       );

@@ -1,4 +1,4 @@
-.mod-form form {
+.input-field form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -6,7 +6,7 @@
     gap: 20px;
 }
 
-.mod-form form .form-group {
+.input-field form .form-group {
     font-family: var(--font-family-reg);
     color: var(--color-blue);
     display: flex;
@@ -16,14 +16,14 @@
     gap: 10px;
 }
 
-.mod-form form .form-group label {
+.input-field form .form-group label {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
 }
 
-.mod-form form .form-group input {
+.input-field form .form-group input {
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -5,7 +5,9 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { NavBar, BreadCrumb, Filter, VendorList } from '../../components';
-import { NewsLetter, Footer} from '../../containers';
+import { NewsLetter, Footer } from '../../containers';
+import listImg from '../../assets/1.jpg';
+
 
 const Vendors = () => {
     const [date, setDate] = useState('');
@@ -79,13 +81,13 @@ const Vendors = () => {
             <Filter />
             {/* vendor listss */}
             <div className="vendor-page-lists">
-            <VendorList />
-            <VendorList />
-            <VendorList />
-            <VendorList />
+                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
+                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
+                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
+                <VendorList vendorImg={listImg} vendorName={'Grand palm hotel'} vendorLoc={'Honda Showroom'} vendorRating={'4.1'} vendorReview={'55'} vendorDetail={'Redwood Resorts, in Panchkula is situated amidst the serene backdrop of Morin town. A haven of tranquility where the only sounds being the wind...'} />
             </div>
             {/* end vendor listss */}
-            <NewsLetter/>
+            <NewsLetter />
             <Footer />
         </div>
     )

@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
+import { RiMenu3Line, RiCloseLine, RiUser3Fill } from 'react-icons/ri';
 import './navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useLogout } from '../../hooks/useLogout';
 
 const NavBar = ({ color }) => {
     const [toggleMenu, setToggleMenu] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
+    const { user } = useAuthContext();
+    const { logout } = useLogout();
 
     const NavColor = {
         color: color,
     };
 
+    const handleClickLogout = () => {
+        logout();
+    };
+
     const handleCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
+    };
+
+    const handleUserMenuToggle = () => {
+        setToggleMenu(!toggleMenu);
     };
 
     return (
@@ -40,7 +52,6 @@ const NavBar = ({ color }) => {
                         <Link to="/">Home</Link>
                     </p>
                     <p>
-                        {/* <Link to="/">Category</Link> */}
                         <select
                             className="category-dropdown"
                             value={selectedCategory}
@@ -64,11 +75,31 @@ const NavBar = ({ color }) => {
                     </p>
                 </div>
             </div>
-            <div className="navbar-sign">
-                <Link to="/login">
-                    <button type="button">Sign up</button>
-                </Link>
-            </div>
+            {!user && (
+                <div className="navbar-sign">
+                    <Link to="/login">
+                        <button type="button">Sign up</button>
+                    </Link>
+                </div>
+            )}
+            {user && (
+                <div className="navbar-sign">
+                    <Link to="" onClick={handleUserMenuToggle}>
+                        <button type="button"><RiUser3Fill /></button>
+                    </Link>
+                    {toggleMenu && (
+                        <div className="user-dropdown">
+                            <p>{user.user}</p>
+                            <ul>
+                                <Link to="/dashboard"><li>Profile</li></Link>
+                                <Link to="/settings"><li>Settings</li></Link>
+                                <div className="line"></div>
+                                <li onClick={handleClickLogout}>Logout</li>
+                            </ul>
+                        </div>
+                    )}
+                </div>
+            )}
 
             <div className="navbar-menu">
                 {toggleMenu ? (
@@ -89,19 +120,6 @@ const NavBar = ({ color }) => {
                         <div className="navbar-menu_container-links">
                             <p>
                                 <Link to="/">Home</Link>
-                            </p>
-                            <p>
-                                <Link to="/">Category</Link>
-                                <select
-                                    className="category-dropdown"
-                                    value={selectedCategory}
-                                    onChange={handleCategoryChange}
-                                >
-                                    <option value="">Select</option>
-                                    <option value="Apple">Apple</option>
-                                    <option value="Yellow">Yellow</option>
-                                    <option value="Red">Red</option>
-                                </select>
                             </p>
                             <p>
                                 <Link to="/vendors">Vendors</Link>

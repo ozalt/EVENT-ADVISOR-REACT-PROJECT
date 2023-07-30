@@ -1,0 +1,134 @@
+/* Add your custom styles here */
+
+/* Parent container */
+.frameParent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 700px;
+  margin: 30px auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative; /* Added positioning for child elements */
+  background-color: rgb(255, 255, 255);
+}
+
+/* Form elements */
+.frameChild,
+.frameTextarea,
+.frameChild6 {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.frameTextarea {
+  height: 150px;
+}
+
+/* Select a Vendor */
+.selectAVendor {
+  font-weight: bold;
+}
+
+/* Rate Vendor */
+.rateVendorParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.frameGroup {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.frameItem {
+  margin-right: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+}
+
+.frameItem:checked {
+  background-color: #4caf50;
+}
+
+/* Add Photos and Submit buttons */
+.frameContainer {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-top: 50px;
+}
+.addPhotosWrapper {
+  font-size: x-small;
+  display: inline-block;
+  overflow: hidden;
+  background-color: #ffb400;
+  color: #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 0;
+  margin-left: 10px;
+}
+
+.addPhotosWrapper:hover {
+  background-color: #0a142f;
+}
+
+.submitWrapper {
+  font-size: x-small;
+  display: inline-block;
+  overflow: hidden;
+  background-color: #0a142f;
+  color: #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 0;
+}
+
+.submitWrapper:hover {
+  background-color: #ffb400;
+}
+
+/* Positioning for buttons */
+.addPhotosWrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 120px;
+}
+
+.submitWrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.photoPreviewContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 0 0 1rem 1rem;
+}
+
+.photoPreview {
+  max-width: 50px;
+  height: auto;
+  margin-top: 5px;
+  margin-right: 5px;
+}
